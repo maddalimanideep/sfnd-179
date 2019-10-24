@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: history-server
+spec:
+  capacity:
+    storage: 5G
+  accessModes:
+  - ReadWriteMany
+  claimRef:
+    namespace: {{ .Release.Namespace }}
+    name: history-server-claim
+  nfs:
+    path: {{ .Values.nfs.path }}
+    server: {{ .Values.nfs.host }}
